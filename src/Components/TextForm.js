@@ -49,6 +49,10 @@ export default function TextForm(props) {
     // takes input as sets it to text
     setText(event.target.value);
   };
+   
+  const mystyle = {
+    backgroundColor: "#FFFFF0"
+  }
   // return statement
   return (
     <div>
@@ -61,32 +65,58 @@ export default function TextForm(props) {
             onChange={handleOnChange}
             id="myBox"
             rows="8"
+            style={mystyle}
           ></textarea>
         </div>
-        <button className="btn btn-primary" onClick={handleUpClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-2 "
+          onClick={handleUpClick}
+        >
           Convert To Uppercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-2 "
+          onClick={handleLoClick}
+        >
           Convert To LowerCase
         </button>
-        <button className="btn btn-success mx-2" onClick={handleExtraSpaces}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-success mx-2 my-2 "
+          onClick={handleExtraSpaces}
+        >
           Remove Extra Spaces
         </button>
-        <button className="btn btn-secondary mx-2" onClick={copyText}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-secondary mx-2 my-2 "
+          onClick={copyText}
+        >
           Copy to clipboard
         </button>
-        <button className="btn btn-danger mx-2" onClick={clearText}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-danger mx-2 my-2 "
+          onClick={clearText}
+        >
           Reset
         </button>
       </div>
       <div className="container my-3">
         <h3>Text Summary</h3>
         <p>
-          {text.split(" ").length} words and {text.length} characters
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          words and {text.length} characters
         </p>
         <p>{text.split(" ").length * 0.08} min read</p>
-        {/* <h2>Preview</h2>
-        <p>{text}</p> */}
+        <h2>Preview</h2>
+        <p>{text.length > 0?text:'Nothing to preview'}</p>
       </div>
     </div>
   );

@@ -1,15 +1,15 @@
 import "./App.css";
 import Navbar from "./Components/Navbar";
 import TextForm from "./Components/TextForm";
-// import About from "./Components/About";
+import About from "./Components/About";
 import React, { useState } from "react";
 
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [modes, setMode] = useState("light");
   const [textStyle, setTextStyle] = useState({
-    color: "black",
+    color: "black"
   });
   const [text, setText] = useState("Dark Mode");
 
@@ -38,24 +38,27 @@ function App() {
 
   return (
     <>
-      {/* <Router> */}
-      <Navbar
-        title="TextUtils"
-        text1="About"
-        mode={modes}
-        toggleMode={toggleMode}
-        text={text}
-        style={textStyle}
-      />
-      <div className="container my-3">
-        <TextForm heading="Write below" />
-      </div>
-      {/* <Routes>
-            <Route exact path="/" element={<TextForm heading="Write below" />} />
+      <Router>
+        {/* passing varaibles to components */}
+        <Navbar
+          title="TextUtils"
+          text1="About"
+          mode={modes}
+          toggleMode={toggleMode}
+          text={text}
+          style={textStyle}
+        />
 
-            <Route exact path="/about" element={<About />} />
+
+        <Routes>
+          {/* <div className="container my-3"> */}
+          <Route exact path="/" element={<TextForm heading="Write below" />} />
+          {/* </div> */}
+
+          <Route exact path="/about" element={<About mode={modes}/>} />
+
         </Routes>
-      </Router> */}
+      </Router>
     </>
   );
 }
